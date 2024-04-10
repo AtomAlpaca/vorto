@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset = "utf-8"/>
+	<meta name = "author" content = "AtomAlpaca"/>
+	<title>Get A Random Word</title>
+	<link rel = "stylesheet" href = "./style.css" type = "text/css" />
+</head>
+
+<body>
+
+
+
+<h1>Get A Random Word</h1>
+
+<p id="word"></p>
+<p id="translation"> </p>
+<script type="module">
+import dict from './data.json' assert { type: 'json' };
+function mdf() {
+	const len = dict.length();
+	const id = Math.floor(Math.random() * len);
+	document.getElementById("word").innerHTML = dict[id].word;
+	//var trans;
+	for (i = 0, l = dict[id].translations.length(); i < l; ++i) {
+			trans += dict[id].translations[i].type + "." + dict[id].translations[i].translation + "<br>";
+	}
+	document.getElementById("translation").innerHTML = trans;
+}
+mdf();
+</script>
+</body>
+</html>
