@@ -10,15 +10,13 @@
 
 <body>
 
-
-
 <h1>Get A Random Word</h1>
 
 <p id="word"></p>
 <p id="translation"> </p>
 <script>
 	async function mdf() {
-		const url = "https://raw.githubusercontent.com/KyleBing/english-vocabulary/master/json/2-%E9%AB%98%E4%B8%AD-%E9%A1%BA%E5%BA%8F.json";
+		const url = "./dict.json";
 		const request = new Request(url);
 		const response = await fetch(request);
 		const text = await response.text();
