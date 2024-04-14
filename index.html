@@ -16,19 +16,27 @@
 
 <p id="word"></p>
 <p id="translation"> </p>
-<script type="module">
-import dict from './data.json';
-function mdf() {
-	const len = dict.length();
-	const id = Math.floor(Math.random() * len);
-	document.getElementById("word").innerHTML = dict[id].word;
-	//var trans;
-	for (i = 0, l = dict[id].translations.length(); i < l; ++i) {
-			trans += dict[id].translations[i].type + "." + dict[id].translations[i].translation + "<br>";
+<script>
+	async function mdf() {
+		const url = "https://raw.githubusercontent.com/KyleBing/english-vocabulary/master/json/2-%E9%AB%98%E4%B8%AD-%E9%A1%BA%E5%BA%8F.json";
+		const request = new Request(url);
+		const response = await fetch(request);
+		const text = await response.text();
+		const dict = JSON.parse(text);
+		console.log(dict);
+		var len = 0;
+		for (var i in dict) { ++len; }
+		console.log(len);
+		const id = parseInt(Math.random() * len);
+		document.getElementById("word").innerHTML = dict[id].word;
+		var trans = '';
+		for (var i of dict[id].translations) {
+			trans += i.type + "." + i.translation + "<br>";
+		}
+		document.getElementById("translation").innerHTML = trans;
+		
 	}
-	document.getElementById("translation").innerHTML = trans;
-}
-mdf();
+	mdf();
 </script>
 </body>
 </html>
